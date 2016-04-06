@@ -13,7 +13,11 @@
     "default_title" : "Augments the comment box."
   },
   "content_scripts": [
-    { "matches": ["*://github.com/*/pull/*"], "js": ["comment.js"] }
+    {
+      "matches": ["*://github.com/*/pull/*"],
+      "js": ["comment.js"],
+      "css": ["comment.css"]
+    }
   ],
   "permissions" : [
     "declarativeContent"
