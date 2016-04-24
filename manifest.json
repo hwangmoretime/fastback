@@ -15,7 +15,7 @@
 
   "content_scripts": [
     {
-      "matches": ["*://github.com/*/pull/*"],
+      "matches": ["*://github.com/*pull/*"],
       "js": ["lib/require.js", "lib/require-cs.js", "app/main.js"],
       "css": ["comment.css"]
     }
