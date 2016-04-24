@@ -12,10 +12,11 @@
     "default_icon" : "icon-19.png",
     "default_title" : "Augments the comment box."
   },
+
   "content_scripts": [
     {
       "matches": ["*://github.com/*/pull/*"],
-      "js": ["comment.js"],
+      "js": ["lib/require.js", "lib/require-cs.js", "app/main.js"],
       "css": ["comment.css"]
     }
   ],
@@ -29,5 +30,6 @@
     "128" : "icon-128.png",
     "256" : "icon-256.png"
   },
+  "web_accessible_resources": ["app/bower_components/textarea-caret-position/index.js"],
   "manifest_version": 2
 }

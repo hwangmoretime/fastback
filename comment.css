@@ -1,18 +1,13 @@
-.upload-enabled textarea {
-    border-bottom: 0px !important;
-}
-
 .comment-arrow-box {
-    position: relative;
     background: #ffffff;
-    border: 1px solid #97938D;
+    border: 2px solid #97938D;
     border-radius: 3px;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
 }
 .comment-arrow-box:after, .comment-arrow-box:before {
     bottom: 100%;
-    left: 3%;
+    left: 15%;
     border: solid transparent;
     content: " ";
     height: 0;
@@ -24,20 +19,20 @@
 .comment-arrow-box:after {
     border-color: rgba(255, 255, 255, 0);
     border-bottom-color: #ffffff;
-    border-width: 8px;
-    margin-left: -8px;
+    border-width: 3px;
+    margin-left: -3px;
 }
 .comment-arrow-box:before {
     border-color: rgba(151, 147, 141, 0);
     border-bottom-color: #97938D;
-    border-width: 10px;
-    margin-left: -10px;
+    border-width: 7px;
+    margin-left: -7px;
 }
 
 .reference-reminder {
-    padding: 7px 10px;
+    padding: 1px 1px;
     margin: 0;
-    font-size: 13px;
+    font-size: 10px;
     line-height: 16px;
     color: #767676;
     background-color: #fafafa;
