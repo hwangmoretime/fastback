@@ -66,7 +66,7 @@ function addReminderListener(element) {
     var coordinates = getCaretCoordinates(this, this.selectionEnd);
     referenceReminder.className = "comment-arrow-box";
     referenceReminder.style.position = 'absolute';
-    referenceReminder.style.top = 16 + coordinates.top + 'px';
+    referenceReminder.style.top = 18 + coordinates.top + 'px';
     referenceReminder.style.left = coordinates.left + 'px';
     referenceReminder.innerHTML =' \
     <p class="reference-reminder"> \

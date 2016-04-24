@@ -7,7 +7,7 @@
 }
 .comment-arrow-box:after, .comment-arrow-box:before {
     bottom: 100%;
-    left: 15%;
+    left: 5%;
     border: solid transparent;
     content: " ";
     height: 0;
