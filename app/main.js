@@ -4,18 +4,21 @@ var getCaretCoordinates = require(
 );
 
 
-// On first load of the general page.
 var generalCommentID = "#new_comment_field";
+var generalCommentContainerClassName = "new-discussion-timeline";
+var inlineCommentClassName = "inline-comments";
+
+
+// On first load of the general page.
 var generalComment = document.querySelector(generalCommentID);
 addReminderListener(generalComment);
+
 
 // Handles SPA changes (e.g. changing from line-by-line view to general view,
 // adding a line-by-line comment)
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 var observer = new MutationObserver(function(mutations, observer) {
   mutations.forEach(function(mutation) {
-    var inlineCommentClassName = "inline-comments";
-    var generalCommentContainerClassName = "new-discussion-timeline";
 
     Array.prototype.forEach.call(mutation.addedNodes, function (addedNode) {
       var commentEl = addedNode.firstElementChild;
@@ -57,7 +60,7 @@ function addReminderListener(element) {
     return;
   }
 
-  // weird hack to get cmd-k to work on first open of first load of the comment page
+  // weird hack to get cmd-k to work on first open of first load of the comment box
   element.blur();
   element.focus();
   // weird hack end
@@ -71,11 +74,19 @@ function addReminderListener(element) {
       referenceReminder = document.createElement('div');
     }
 
+
     var coordinates = getCaretCoordinates(this, this.selectionEnd);
     referenceReminder.className = "comment-arrow-box pop-in";
     referenceReminder.style.position = 'absolute';
-    referenceReminder.style.top = 18 + coordinates.top + 'px';
-    referenceReminder.style.left = coordinates.left + 'px';
+    referenceReminder.style.top = element.offsetTop
+                                  - element.scrollTop
+                                  + 18
+                                  + coordinates.top
+                                  + 'px';
+    referenceReminder.style.left = element.offsetLeft
+                                  - element.scrollLeft
+                                  + coordinates.left
+                                  + 'px';
     referenceReminder.innerHTML =' \
     <p class="reference-reminder"> \
       <span> \
