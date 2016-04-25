@@ -28,13 +28,14 @@ var observer = new MutationObserver(function(mutations, observer) {
       if (addedNode.nodeName === "#text") {
         var urlPattern = /.*\[.*\]\(.*\).*/;
         if (urlPattern.exec(addedNode.wholeText) != null) {
-          previousReminder = document.querySelector(".comment-arrow-box");
-          if (previousReminder != null) {
-            previousReminder.remove();
+          var reminder = document.querySelector(".comment-arrow-box");
+          if (reminder != null) {
+            reminder.remove();
           }
         }
         return;
       }
+
       if (iterableContains(generalCommentContainerClassName, addedNode.classList)) {
         commentBox = addedNode.querySelector(generalCommentID);
       }
@@ -84,7 +85,10 @@ function addReminderListener(element) {
     </p> \
     ';
 
-    element.insertAdjacentElement("afterend", referenceReminder);
+    if (!element.reminderAddedAtLeaseOnce) {
+      element.insertAdjacentElement("afterend", referenceReminder);
+    }
+    element.reminderAddedAtLeaseOnce = true;
   });
 }
 
