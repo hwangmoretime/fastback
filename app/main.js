@@ -54,6 +54,12 @@ function addReminderListener(element) {
   if (!element) {
     return;
   }
+
+  // weird hack to get cmd-k to work on first open of first load of the comment page
+  element.blur();
+  element.focus();
+  // weird hack end
+
   element.addEventListener('input', function () {
     previousReminder = this.parentNode.querySelector(".comment-arrow-box");
     var referenceReminder;
