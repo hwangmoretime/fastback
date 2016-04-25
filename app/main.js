@@ -4,12 +4,13 @@ var getCaretCoordinates = require(
 );
 
 
-// // On existing comment boxes (i.e. general)
+// On first load of the general page.
 var generalCommentID = "#new_comment_field";
 var generalComment = document.querySelector(generalCommentID);
 addReminderListener(generalComment);
 
-// On line-by-line comments.
+// Handles SPA changes (e.g. changing from line-by-line view to general view,
+// adding a line-by-line comment)
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 var observer = new MutationObserver(function(mutations, observer) {
   mutations.forEach(function(mutation) {
@@ -25,8 +26,8 @@ var observer = new MutationObserver(function(mutations, observer) {
         return;
       }
       if (addedNode.nodeName === "#text") {
-        var urlPattern = /\[.*\]\(url\)/;
-        if (urlPattern.exec(addedNode.textContent) != null) {
+        var urlPattern = /.*\[.*\]\(.*\).*/;
+        if (urlPattern.exec(addedNode.wholeText) != null) {
           previousReminder = document.querySelector(".comment-arrow-box");
           if (previousReminder != null) {
             previousReminder.remove();
