@@ -51,21 +51,25 @@ function addReminderListener(element) {
 
   element.latestMutationTime = new Date();
   element.addEventListener('input', function () {
-    var urlPattern = /.*\[.*\]\(.*\).*/;
-    if (urlPattern.exec(element.value) != null) {
-      var reminder = element.parentElement.querySelector(".comment-arrow-box");
-      if (reminder != null && element.dialogueCounter === 1) {
-        reminder.remove();
-      }
+    // var urlPattern = /.*\[.*\]\(.*\).*/;
+    // if (urlPattern.exec(element.value) != null) {
+    //   var reminder = element.parentElement.querySelector(".comment-arrow-box");
+    //   if (reminder != null && element.dialogueCounter === 1) {
+    //     reminder.remove();
+    //   }
+    // }
+    var reminder = element.parentElement.querySelector(".comment-arrow-box");
+    if (reminder != null) {
+      reminder.remove();
     }
 
     element.latestMutationTime = new Date();
     setTimeout(function() {
       var time = new Date();
-      if (time - element.latestMutationTime >= 2000) {
+      if (time - element.latestMutationTime >= 400) {
         addReminder(element);
       }
-    }, 2000);
+    }, 400);
   });
 }
 
@@ -95,26 +99,25 @@ function addReminder(element) {
   var dialog;
   switch(element.dialogueCounter) {
     case 1:
-        dialog = 'case 1';
+        dialog = `
+          Good code-review comments are justified. Press
+          <span class="reference">Cmd + K</span> to cite your comment.
+        `;
         element.dialogueCounter++;
         break;
     case 2:
-        dialog = 'case 2';
-        element.dialogueCounter++;
-        break;
-    case 3:
-        dialog = 'case 3';
+        dialog = `
+          Why is this the case? Press
+          <span class="reference">Cmd + K</span> to cite.
+        `;
         element.dialogueCounter++;
         break;
     default:
-        dialog = ' \
-          <p class="reference-reminder"> \
-            <span> \
-              <span class="why">Why? </span> \
-              <span class="reference">Command+K</span> to cite a reference. \
-            </span> \
-          </p> \
-          ';
+        dialog = `
+          Providing a reference will help
+          <span class="username">${getReviewee()}</span> improve their code. Press
+          <span class="reference">Cmd + K</span>.
+        `;
         element.dialogueCounter = 1;
         break;
   }
@@ -122,6 +125,13 @@ function addReminder(element) {
 
   element.insertAdjacentElement("afterend", referenceReminder);
 }
+
+
+function getReviewee() {
+  // TO DO: Handle if the PR is already merged
+  return document.querySelector('.pull-header-username').childNodes[0].textContent;
+}
+
 
 function iterableContains(needle, haystack) {
   for (var i = 0; i < haystack.length; i++) {

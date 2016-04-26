@@ -4,6 +4,13 @@
     border-radius: 3px;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
+
+    padding: 3.5px 3.5px;
+    margin: 0;
+    font-size: 18px;
+    line-height: 16px;
+    color: #767676;
+    background-color: #fafafa;
 }
 .comment-arrow-box:after, .comment-arrow-box:before {
     bottom: 100%;
@@ -29,21 +36,13 @@
     margin-left: -7px;
 }
 
-.reference-reminder {
-    padding: 3.5px 3.5px;
-    margin: 0;
-    font-size: 18px;
-    line-height: 16px;
-    color: #767676;
-    background-color: #fafafa;
-}
-.reference-reminder .why {
-    font-weight: bold;
-}
-
-.reference-reminder .reference {
+.comment-arrow-box .reference {
     font-weight: bold;
     color: #60B044;
+}
+
+.comment-arrow-box .username {
+    font-weight: bold;
 }
 
 @-webkit-keyframes pop-in {
