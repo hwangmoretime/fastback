@@ -51,13 +51,6 @@ function addReminderListener(element) {
 
   element.latestMutationTime = new Date();
   element.addEventListener('input', function () {
-    // var urlPattern = /.*\[.*\]\(.*\).*/;
-    // if (urlPattern.exec(element.value) != null) {
-    //   var reminder = element.parentElement.querySelector(".comment-arrow-box");
-    //   if (reminder != null && element.dialogueCounter === 1) {
-    //     reminder.remove();
-    //   }
-    // }
     var reminder = element.parentElement.querySelector(".comment-arrow-box");
     if (reminder != null) {
       reminder.remove();
