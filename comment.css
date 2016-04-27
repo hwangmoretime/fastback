@@ -12,6 +12,8 @@
     color: #767676;
     background-color: #fafafa;
 }
+
+/* arrow */
 .comment-arrow-box:after, .comment-arrow-box:before {
     bottom: 100%;
     left: 5%;
@@ -22,7 +24,6 @@
     position: absolute;
     pointer-events: none;
 }
-
 .comment-arrow-box:after {
     border-color: rgba(255, 255, 255, 0);
     border-bottom-color: #ffffff;
